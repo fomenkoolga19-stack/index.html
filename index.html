@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение для Давида</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --blue-sky: #d1e9ff;
+            --blue-main: #4a90e2;
+            --green-soft: #b8c7a1;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(to bottom, #d1e9ff 0%, #ffffff 100%);
+            min-height: 100vh;
+            color: #5a5a5a;
+            overflow-x: hidden;
+        }
+
+        /* ОБЛАКА НА ФОНЕ */
+        .cloud-bg {
+            position: fixed; background: #fff; border-radius: 50px; opacity: 0.6; z-index: 1;
+            animation: float-bg 40s linear infinite;
+        }
+        .cloud-bg::after, .cloud-bg::before { content: ''; position: absolute; background: #fff; border-radius: 50%; }
+        .cloud-bg::after { width: 60px; height: 60px; top: -30px; left: 15px; }
+        .cloud-bg::before { width: 50px; height: 50px; top: -20px; left: 45px; }
+
+        @keyframes float-bg {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(110vw); }
+        }
+
+        /* ТРАНСПОРТ */
+        .transport { position: fixed; font-size: 70px; z-index: 10; pointer-events: none; }
+        
+        .plane {
+            offset-path: path('M20,50 C20,-50 180,-50 180,50 C180,150 20,150 20,50 Z M180,50 C180,-50 340,-50 340,50 C340,150 180,150 180,50 Z');
+            animation: infinity-fly 15s linear infinite;
+        }
+
+        .train {
+            bottom: 15%; left: -50%;
+            animation: drive-right 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .car {
+            bottom: 5%; right: -30%;
+            animation: drive-left 15s linear infinite;
+        }
+
+        @keyframes infinity-fly { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+        @keyframes drive-right { from { left: -50%; } to { left: 150%; } }
+        @keyframes drive-left { from { right: -30%; } to { right: 150%; } }
+
+        /* ВЫГЛЯДЫВАЮЩИЙ МИШКА */
+        .bear {
+            position: absolute;
+            font-size: 60px;
+            top: -50px;
+            right: 20px;
+            z-index: -1;
+            animation: peek 4s ease-in-out infinite;
+        }
+
+        @keyframes peek {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-35px) rotate(10deg); }
+        }
+
+        .container { max-width: 450px; margin: 0 auto; padding: 20px; position: relative; z-index: 20; text-align: center; }
+        
+        h1 { font-family: 'Pacifico', cursive; font-size: 3.2rem; color: var(--blue-main); margin: 10px 0; text-shadow: 3px 3px 0 white; }
+
+        .block {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 35px; padding: 25px; margin-bottom: 25px;
+            border: 3px solid #a9d1e1;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* ПОЛНЫЙ КАЛЕНДАРЬ */
+        .calendar { 
+            display: inline-block; border: 2px solid #a9d1e1; border-radius: 15px; 
+            padding: 12px; background: white; margin: 15px 0; width: 220px;
+        }
+        .cal-header { font-weight: bold; color: var(--blue-main); margin-bottom: 8px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; font-size: 13px; text-align: center; }
+        .cal-day-header { font-weight: bold; color: #888; font-size: 11px; }
+        .active-day { 
+            background: #ff6b6b; color: white; border-radius: 50%; 
+            font-weight: bold; padding: 2px; width: 22px; height: 22px; 
+            display: flex; align-items: center; justify-content: center; margin: 0 auto;
+        }
+
+        .timer-wrap { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+        .timer-item { background: var(--green-soft); color: white; padding: 10px; border-radius: 15px; min-width: 60px; }
+        .timer-val { font-size: 1.5rem; font-weight: 900; }
+
+        .btn {
+            display: block; text-decoration: none; padding: 20px; margin: 15px 0;
+            border-radius: 50px; font-weight: 900; font-size: 1.3rem; color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .btn-yes { background: #77dd77; box-shadow: 0 6px 0 #5bad5b; }
+        .btn-no { background: #ffb3ba; box-shadow: 0 6px 0 #d19298; }
+        .btn:active { transform: translateY(4px); box-shadow: none; }
+    </style>
+</head>
+<body>
+
+    <div class="cloud-bg" style="top: 10%; left: -100px; width: 120px; height: 40px; animation-delay: 0s;"></div>
+    <div class="cloud-bg" style="top: 40%; left: -100px; width: 150px; height: 45px; animation-delay: -15s;"></div>
+
+    <div class="transport plane">✈️</div>
+    <div class="transport train">🚂🚃🚃🚃</div>
+    <div class="transport car">🚗</div>
+
+    <div class="container">
+        <header>
+            <h1>Давидке 1 годик!</h1>
+            <p style="font-size: 1.1rem; font-weight: 700;">Приглашаем тебя на день рождения нашего сына!</p>
+        </header>
+
+        <div class="block">
+            <div class="bear">🧸</div> <!-- МИШКА ТУТ -->
+            <div style="font-size: 1.6rem; font-weight: 900; color: var(--blue-main);">19 МАРТА 2026</div>
+            <p>Начало в 13:00</p>
+            
+            <div class="calendar">
+                <div class="cal-header">МАРТ 2026</div>
+                <div class="cal-grid">
+                    <span class="cal-day-header">Пн</span><span class="cal-day-header">Вт</span><span class="cal-day-header">Ср</span><span class="cal-day-header">Чт</span><span class="cal-day-header">Пт</span><span class="cal-day-header">Сб</span><span class="cal-day-header">Вс</span>
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
+                    <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                    <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+                    <span>16</span><span>17</span><span>18</span><span class="active-day">19</span><span>20</span><span>21</span><span>22</span>
+                    <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+                    <span>30</span><span>31</span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <p>📍 <b>Кафе «Лаффа»</b><br>ул. Акан Серы 28/1</p>
+        </div>
+
+        <div class="block">
+            <p>⏳ До праздника осталось:</p>
+            <div class="timer-wrap">
+                <div class="timer-item"><div id="days" class="timer-val">00</div>дн</div>
+                <div class="timer-item"><div id="hours" class="timer-val">00</div>час</div>
+                <div class="timer-item"><div id="mins" class="timer-val">00</div>мин</div>
+                <div class="timer-item" style="background:#ffb3ba;"><div id="secs" class="timer-val">00</div>сек</div>
+            </div>
+        </div>
+
+        <div class="block">
+            <h3>Ты придешь?</h3>
+            <a href="https://wa.me!+77051469933🎉" class="btn btn-yes">Приду 👍</a>
+            <a href="https://wa.me.+77051469933😔" class="btn btn-no">Не смогу 😔</a>
+        </div>
+
+        <footer style="padding: 20px; background: rgba(255,255,255,0.7); border-radius: 20px;">
+            Организаторы: <b>Валерий и Ольга</b><br>
+            📞 <a href="tel:+77051469933" style="color: var(--blue-main); text-decoration: none; font-weight: bold;">+7 705 146 9933</a>
+        </footer>
+    </div>
+
+    <script>
+        const targetDate = new Date("March 19, 2026 13:00:00").getTime();
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            } else {
+                document.querySelector(".timer-wrap").innerHTML = "<b>Праздник начался! 🎉</b>";
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
